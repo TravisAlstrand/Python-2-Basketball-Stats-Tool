@@ -1,16 +1,15 @@
+import copy
 from constants import PLAYERS
 
 
 def create_new_list(list):
-  new_list = []
-  for item in list:
-    new_list.append(item)
+  new_list = copy.deepcopy(list)
   return new_list
 
 
-def convert_int(string):
-  new_int = int(string)
-  return new_int
+# def convert_int(string):
+#   new_int = int(string)
+#   return new_int
 
 
 def convert_bool(string):
@@ -31,4 +30,3 @@ def clean_data(list):
 if __name__ == "__main__":
   new_players = create_new_list(PLAYERS)
   clean_data(new_players)
-  print(PLAYERS)
