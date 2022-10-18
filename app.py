@@ -21,9 +21,7 @@ def main():
   balanced_teams = teams.balance_teams(new_teams, cleaned_players)
   avg_heights = teams.get_avg_heights(balanced_teams)
   # call print function
-  print_it.print_intro()
-  print_it.print_team_options(balanced_teams, avg_heights)
-
+  print_it.print_intro(balanced_teams, avg_heights)
 
 
 # Dunder Main statement
