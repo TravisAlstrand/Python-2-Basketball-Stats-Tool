@@ -1,4 +1,3 @@
-
 # replace PLAYER experience / height / guardians with new values
 def clean_data(list):
   for dict in list:
