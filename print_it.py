@@ -44,7 +44,7 @@ def print_team_options(teams, avgs):
       choice_two_string = input('\n>>> Enter an option >  ')
       choice_two = int(choice_two_string)
       # if valid input
-      if choice_two in range(1, index - 1):
+      if choice_two in range(1, index):
 
         # this is where I'll call the print_team_details function
         # my goal is to send the correct dictionary as an argument without hardcoding in a team name like - teams('Panthers')
@@ -52,7 +52,7 @@ def print_team_options(teams, avgs):
         # is there a way OR better way to achieve something like this?
 
         # my goal (if it were a list) for comparison below
-        print_team_details(teams[index - 1])
+        print_team_details(teams[choice_two - 1], avgs)
       else:
         # if invalid number
         raise Exception(f'\n** Please enter a number between 1 and {index - 1} **\n')
