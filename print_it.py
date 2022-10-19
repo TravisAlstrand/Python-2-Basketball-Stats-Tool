@@ -1,3 +1,5 @@
+from constants import TEAMS
+
 # intro to print to console for interaction
 def print_intro(teams, avgs):
   print(''' 
@@ -20,6 +22,7 @@ def print_intro(teams, avgs):
       # to print teams
       elif choice_one == 1:
         print_team_options(teams, avgs)
+        break
       # if invalid number
       elif choice_one <= 0 or choice_one > 2:
         raise Exception('\n** Please enter a 1 or 2 **\n')
@@ -45,14 +48,9 @@ def print_team_options(teams, avgs):
       choice_two = int(choice_two_string)
       # if valid input
       if choice_two in range(1, index):
-
-        # this is where I'll call the print_team_details function
-        # my goal is to send the correct dictionary as an argument without hardcoding in a team name like - teams('Panthers')
-        # but can't seem to access dictionary key/values by index like a list.
-        # is there a way OR better way to achieve something like this?
-
-        # my goal (if it were a list) for comparison below
-        print_team_details(teams[choice_two - 1], avgs)
+        team_name = TEAMS[choice_two -1]
+        print_team_details(teams[team_name], team_name, avgs[choice_two - 1])
+        break
       else:
         # if invalid number
         raise Exception(f'\n** Please enter a number between 1 and {index - 1} **\n')
@@ -66,5 +64,27 @@ def print_team_options(teams, avgs):
 
 
 # display team details
-def print_team_details(team, avg):
-  print("ahhh... I've been expecting you...")
+def print_team_details(team, team_name, avg):
+  exp = 0
+  no_exp = 0
+  for player in team:
+    if player['experience'] == True:
+      exp += 1
+    else:
+      no_exp += 1
+  
+  print(f'\nTeam: {team_name} Stats\n---------------------\n')
+  print(f'Total players: {len(team)}')
+  print(f'Total experienced: {exp}\nTotal inexperienced: {no_exp}\nAverage height: {avg}')
+
+  player_names_list = []
+  guardian_list = []
+  for player in team:
+    player_names_list.append(player['name'])
+    guardian_list.append(player['guardians'])
+  player_names = ', '.join(player_names_list)
+
+  print(f'''\nPlayers on Team:
+    {player_names}\n''')
+  print(guardian_list)
+  
