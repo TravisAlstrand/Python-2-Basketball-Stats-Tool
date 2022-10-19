@@ -49,7 +49,7 @@ def print_team_options(teams, avgs):
       # if valid input
       if choice_two in range(1, index):
         team_name = TEAMS[choice_two -1]
-        print_team_details(teams[team_name], team_name, avgs[choice_two - 1])
+        print_team_details(teams[team_name], team_name, avgs[choice_two - 1], teams, avgs)
         break
       else:
         # if invalid number
@@ -64,7 +64,7 @@ def print_team_options(teams, avgs):
 
 
 # display team details
-def print_team_details(team, team_name, avg):
+def print_team_details(team, team_name, avg, teams, avgs):
   exp = 0
   no_exp = 0
   for player in team:
@@ -83,8 +83,40 @@ def print_team_details(team, team_name, avg):
     player_names_list.append(player['name'])
     guardian_list.append(player['guardians'])
   player_names = ', '.join(player_names_list)
+  guardian_list_flat = [item for sublist in guardian_list for item in sublist]
+  guardian_names = ', '.join(guardian_list_flat)
 
   print(f'''\nPlayers on Team:
     {player_names}\n''')
-  print(guardian_list)
-  
+
+  print(f'''\nGuardians:
+    {guardian_names}\n''')
+
+  print(''' -----------------------------
+    Here are your choices: 
+    1) Main Menu
+    2) Team Selections
+  ''')
+
+  while True:
+    try:
+      choice_three_string = input('>>> Enter an option >  ')
+      choice_three = int(choice_three_string)
+      # to main menu
+      if choice_three == 1:
+        print_intro(teams, avgs)
+        break
+      # to print teams
+      elif choice_three == 2:
+        print_team_options(teams, avgs)
+        break
+      # if invalid number
+      elif choice_three <= 0 or choice_three > 2:
+        raise Exception('\n** Please enter a 1 or 2 **\n')
+    # if not a number
+    except ValueError:
+      print('\n** Please enter a number **\n')
+      continue
+    except Exception as e:
+      print(e)
+      continue
