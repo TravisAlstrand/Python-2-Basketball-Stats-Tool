@@ -1,8 +1,7 @@
 import player_methods as players 
 import team_methods as teams
 import print_it
-from constants import PLAYERS
-from constants import TEAMS
+from constants import PLAYERS, TEAMS
 import copy
 
 
